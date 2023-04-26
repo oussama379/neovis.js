@@ -230,7 +230,7 @@
         const S = {
           neo4j: {
             initialQuery:
-              "MATCH (n) WHERE NOT NULL (n.pagerank)\n                        WITH (n), RAND() AS random\n                        ORDER BY random LIMIT 3000\n                        OPTIONAL MATCH (n)-[r]-(m)\n                        //WITH n,r,m WHERE NOT NULL (n.pagerank) AND NOT NULL (m.pagerank) AND NOT NULL (m.community)\n                        RETURN n, r, m;",
+              "MATCH (n) WHERE n.pagerank IS NOT NULL\n                        WITH (n), RAND() AS random\n                        ORDER BY random LIMIT 3000\n                        OPTIONAL MATCH (n)-[r]-(m)\n                        //WITH n,r,m WHERE n.pagerank IS NOT NULL AND n.pagerank IS NOT NULL AND m.community IS NOT NULL \n                        RETURN n, r, m;",
             neo4jUri: "bolt://localhost:7687",
             neo4jUser: "neo4j",
             neo4jPassword: "neo4j",
